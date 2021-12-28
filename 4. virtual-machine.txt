@@ -1,0 +1,31 @@
+Cli command
+-----------
+
+# create 
+ az vm create --name vmdemo --resource-group rgdemo --location eastus --image win2019datacenter --admin-username rahulshukla422 --admin-password Admin@234u32y423
+
+# open the ports
+ az vm open-port --port 3389 --name vmdemo --resource-group rgdemo
+ az vm open-port --port 80 --name vmdemo --resource-group rgdemo
+
+# delete the vm
+ az vm delete --name vmdemo --resource-group rgdemo --yes
+
+
+
+***************************************************************
+
+Powershell
+---------
+
+
+# create
+ $cred = get-credential
+ new-azvm -name vmdemo -resourcegroupname rgdemo -location eastus -image win2016datacenter -openports 80,3389 -cretendential $cred
+
+# show 
+ get-azvm -name vmdemo -resourcegroupname rgdemo 
+
+
+# delete 
+ remove-azvm -Name vmdemo -ResourceGroupName rgdemo -Force

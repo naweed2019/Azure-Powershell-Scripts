@@ -1,0 +1,36 @@
+Cli Command
+-----------
+
+# Create 
+ az storage account create --name stgdemo --resource-group rgdemo --location eastus --sku Standard_LRS
+
+#show 
+ az storage account show --name stgdemo
+
+# get the keys
+ az storage account list --account-name stgdemo --query [0].value
+
+# delete
+ az storage account delete --name stgdemo
+
+*********************************************
+
+Powershell
+----------
+
+# create
+ New-AzStorageAccount -Name stgdemo12 -ResourceGroupName rgdemo -Location eastus -Sku Standard_LRS
+
+# show
+ Get-AzStorageAccount -Name stgdemo12 -ResourceGroupName rgdemo
+
+# delete
+ Remove-AzStorageAccount -Name stgdemo12 -ResourceGroupName rgdemo
+
+# get storage account key
+ (Get-AzStorageAccountKey -Name stgdemo12 -ResouceGroupName rgdemo).value[0]
+
+
+
+
+

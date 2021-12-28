@@ -1,0 +1,45 @@
+Cli command
+------------
+
+# create 
+ az keyvault create --name akvdemo --resource-group rgdemo --location eastus
+
+# show
+ az keyvault show --name akvdemo
+
+# add secrets
+ az keyvault secret set --vault-name akvdemo --name sqlcred --value sqladmin@123
+
+# show secret 
+ az keyvault secret show --vault-name akvdemo --name sqlcred
+
+# delete secret 
+ az keyvault secret delete --vault-name akvdemo13 --name sqlcred
+
+# delete keyvault
+ az keyvault delete --name akvdemo
+
+*****************************************************************
+
+Powershell
+----------
+
+# create 
+ New-AzKeyVault -Name akvdemo14 -ResourceGroupName rgdemo -Location eastus -Sku Standard
+
+# show 
+ Get-AzKeyvault -VaultName akvdemo14 
+
+# add secret
+  $secretValue = ConvertTo-SecureString sqladmin@123 -AsPlainText -Force
+  Set-AzKeyvaultSecret -VaultName akvdemo14 -Name sqlcred -SecretValue $secretValue
+
+# get secret
+ (Get-AzKeyvaultSecret -VaultName akvdemo14 -Name  sqlcred).SecretValueText
+
+# delete secret 
+ Remove-AzKeyvaultSecret -VaultName akvdemo14 -Name sqlcred -Force
+
+# delete keyvault
+ remove-azkeyvault -VaultName akvdemo14 -Force
+

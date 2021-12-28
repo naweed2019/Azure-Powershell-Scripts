@@ -1,0 +1,31 @@
+Cli Command
+-----------
+
+#Create the resouce group
+az group create --name rgdemo --location eastus
+
+# show the resource group
+az group show --name rgdemo
+
+# delete the resource group
+ az group delete --name rgdemo
+
+**************************************************
+
+Powershell
+----------
+
+# create the resource group 
+New-AzResourceGroup -Name rgdemo -Location eastus
+
+# show resource group
+Get-AzResourceGroup -Name rgdemo
+
+# delete resource group 
+Remove-AzResourceGroup -Name rgdemo --yes
+
+
+
+
+
+

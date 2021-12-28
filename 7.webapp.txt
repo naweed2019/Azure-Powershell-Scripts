@@ -1,0 +1,28 @@
+Cli
+----
+
+# Create new appservice plan
+ az appservice plan create --name appplandemo11 --resource-group rgdemo --sku s1
+
+# create web app in the above plan
+ az webapp create --name webappdemo11 --resource-group rgdemo --plan appplandemo11 
+
+# deploy the code from github to above created web app (auto sync)
+ az webapp deployment source config --name webappdemo11 --resource-group rgdemo --repo-url https://github.com/XXXXXX.git --branch master
+
+# deploy the code with auto sync disbaled
+ az webapp deployment source config --name webappdemo11 --resource-group rgdemo --repo-url https://github.com/XXXXXX.git --branch master --manual-integration
+
+# delete the deployment source config
+ az webapp deployment source delete --name webappdemo11 --resource-group rgdemo
+
+# delete appservice plan
+ az appservice plan delete --name appplan11 --resource-group rgdemo --yes
+
+# delete the webapp
+ az webapp delete --name webappdemo11 --resource-group rgdemo
+
+********************************************************************************************
+
+Powershell
+---------

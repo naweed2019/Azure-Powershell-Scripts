@@ -1,0 +1,55 @@
+Cli
+-----
+# create new keyvault
+ az keyvault create --name akvdemo111 --resource-group rgdemo --location eastus --enabled-for-disk-encryption true
+
+# create new vm (if not exist)
+ az vm create --name vmdemo111 --resource-group rgdemo --image win2016datacenter --location eastus --admin-username rahulshukla422 --admin-password yourpassword 
+
+# enable disk encryption
+ az vm encryption enable --name vmdemo111 --resource-group rg demo --disk-encryption-keyvault akvdemo111
+
+***************************************************************************************************
+
+Powershell
+----------
+
+
+
+$loc =east-us
+$rg =(New-AzResourceGroup -Name diskecn-into -Location $loc).ResourceGroupName
+$cred = Get-Credential
+
+#1. Create the new vm for the encryption
+
+$vm =New-AzVM `
+    -Name vmenc-dev `
+    -Location $loc `
+    -ResourceGroupName $rg `
+    -VirtualNetworkName encvnet `
+    -SubnetName encsubnet `
+    -PublicIpAddressName encip `
+    -Credential $cred `
+    -OpenPorts 80,3389
+
+#2. Create the new keyvault with diskencryption enabled
+
+$kv = New-AzKeyVault `
+        -Name encKeyvaultshu `
+        -ResourceGroupName $rg `
+        -Sku Standard `
+        -Location $loc `
+        -EnabledForDiskEncryption 
+
+#3. Enable the disk encryption for the above created vm
+
+Set-AzVMDiskEncryptionExtension `
+        -ResourceGroupName $rg `
+        -VMName $vm.Name `
+        -DiskEncryptionKeyVaultUrl $kv.VaultUri `
+        -DiskEncryptionKeyVaultId $kv.ResourceId 
+
+#4. Varify the disk encryption status 
+Get-AzVMDiskEncryptionStatus `
+       -ResourceGroupName $rg `
+       -VMName $vm.Name

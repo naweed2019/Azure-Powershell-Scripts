@@ -1,0 +1,5 @@
+create unmanaged drive. Do the do. Sysprep. get URL as below..
+
+https://mylabdisks538.blob.core.windows.net/vhds/Win2016Template20200714190503.vhd
+
+Using github "201-vm-specialized-vhd-new-or-existing-vnet" create custom deployment.

@@ -1,0 +1,48 @@
+Cli
+----
+
+# create profile 
+ az cdn profile create --name cdndmeo12 --resource-group rgdemo --location eastus --sku standard_microsoft
+
+# show profile 
+ az cdn profile show --name cdndemo12 --resource-group rgdemo 
+
+# filter profile (eg. find the sku name of the cdn profile )
+  az cdn profile show --name cdndemo12 --resource-group rgdemo --query sku.name 
+
+# add endpoint 
+ az cdn endpoint create --name endpointdemo11 --profile-name cdndemo12 --resource-group rgdemo --origin stgcommon.blob.core.windows.net 80 443
+
+# show endpoints 
+ az cdn endpoint show --name endpointdemo11 --profile-name  cdndemo12 --resource-group rgdemo
+
+# delete endpoint 
+ az cdn endpoint delete --name endpointdemo11 --profile-name cdndemo12 --resource-group rgdemo
+
+# delete profile 
+ az cdn profile delete --name cdndemo12 --resource-group rgdemo
+
+
+***************************************************************************************
+Powershell
+---------
+
+# create cdn profile 
+ new-azcdnprofile -profilename cdndemo12 -resourcegroupname rgdemo -location eastus -sku standard_microsoft
+
+# show cdn profile
+  get-azcdnprofile -profilename cdndemo12 -resourcegroupname rgdemo 
+
+# add the endpoint
+ New-AzCdnEndpoint -ProfileName cdndemo12 -EndpointName endpointdemo13 -ResourceGroupName rgdemo -Location eastus -OriginName storage -OriginHostName stgcommon.blob.core.net -HttpPort 80 -HttpsPort 443
+
+# delete endpoint 
+ Remove-AzCdnEndpoint -ProfileName cdndemo12 -EndpointName endpointdemo13 -ResourceGroupName rgdemo -Confirm
+
+# delete cnd profile 
+ Remove-AzCdnProfile -ProfileName cdndemo12 -ResourceGroupName rgdemo
+
+
+
+
+

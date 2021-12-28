@@ -1,0 +1,1 @@
+set-azvmcustomscriptextension -resourcegroupname MyLab -vmname backendserver -location eastus2 -fileuri "https://raw.githubusercontent.com/homeslacks/az-powershell/master/mountmydisk.ps1" -name stinkinname -run mountmydisk.ps1
