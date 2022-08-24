@@ -24,6 +24,8 @@ Get-AzResourceGroup -Name rgdemo
 # delete resource group 
 Remove-AzResourceGroup -Name rgdemo --yes
 
+just checking changes with dev environment
+
 
 
 
